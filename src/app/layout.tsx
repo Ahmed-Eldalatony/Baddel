@@ -18,8 +18,13 @@ const openSans = Readex_Pro({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "The Bds Project",
+  title: "Baddel",
   description: "The boycott Pro",
+  icons: {
+    icon: "/favicon.ico?v=4",
+    apple: "/apple-touch-icon.png?v=4",
+    shortcut: "/apple-touch-icon.png",
+  },
 };
 export default function RootLayout({
   children,
