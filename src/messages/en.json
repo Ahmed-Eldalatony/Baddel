@@ -1,0 +1,135 @@
+{
+    "Home": {
+        "nav": {
+            "search": "Search",
+            "categories": "Categories",
+            "about": "About",
+            "signin": "Sign in",
+            "signout": "Sign out"
+        },
+        "hero": {
+            "header": "The Boycott Pro For Palestine.",
+            "description": "A project made to collect data about the companies that support or showed support for Israel, and giving good alternatives to the products of these companies.",
+            "learn": "Learn about the boycott",
+            "info": "More than 30 products and 10 companies in the database until now, and the products list is growing consistently.",
+            "donate": "Donate",
+            "categories": "Categories"
+        },
+        "newItem": {
+            "learn": "Learn about the boycott and palestine",
+            "description": " Here is some content about why to boycott,how, and what is the affect of that. ",
+            "1": {
+                "title": "Why did America fight the Arab boycott? And why are people interrupting?",
+                "by": "Mokhbir iqtsadi"
+            },
+            "2": {
+                "title": "Palestine .. a Tale of Land",
+                "by": "Eldahih"
+            },
+            "3": {
+                "title": "Israel is bleeding! Is the Israeli economy collapsing due to its war on Gaza?",
+                "by": "Mokhbir iqtsadi"
+            }
+        }
+    },
+    "Shared": {
+        "trending": "Trending Alternatives",
+        "more": "More",
+        "replaced": "You Should Look for Alternatives To"
+    },
+    "TagTypes": {
+        "supporter": {
+            "name": "Supporter",
+            "tooltipContent": "This product is a supporter for Israel."
+        },
+        "american": {
+            "name": "American",
+            "tooltipContent": "American products are indirect supporter for Israel."
+        },
+        "israeli": {
+            "name": "Israeli",
+            "tooltipContent": "This product is founded in Israel."
+        },
+        "european": {
+            "name": "European",
+            "tooltipContent": "European products are indirect supporter for Israel."
+        },
+        "valid": {
+            "name": "Valid",
+            "tooltipContent": "This product is valid it doesn't support Israel in direct or indirect way."
+        },
+        "safe": {
+            "name": "Safe",
+            "tooltipContent": "This Product is mostly more safe than other products."
+        },
+        "unsafe": {
+            "name": "Unsafe",
+            "tooltipContent": "This product have safety issues, you can search for more info. "
+        },
+        "openSource": {
+            "name": "Open Source",
+            "tooltipContent": "Open Source is always good!"
+        },
+        "unhealthy": {
+            "name": "Unhealthy",
+            "tooltipContent": "This product have health related issues, you can search for more info."
+        },
+        "healthy": {
+            "name": "Healthy",
+            "tooltipContent": "This product is know for having good health quality standards"
+        }
+    },
+    "Categories": {
+        "technology": "Technology",
+        "food": "Food Products"
+    },
+    "Register": {
+        "signin": "Sign in",
+        "signup": "Sign up",
+        "signout": "Sign out",
+        "name": "Name",
+        "namePlaceholder": "John Doe",
+        "loading": "Loading",
+        "email": "Email",
+        "password": "Password",
+        "passwordPlaceholder": "At least more than 8 characters",
+        "passwordError": "Password Should be at least more than 8 characters",
+        "emailError": "Email is not valid",
+        "invalidData": "Invalid Data",
+        "account": "Don't have an account?",
+        "usernameError": "Insert user name",
+        "noData": "Insert your data",
+        "submit": "Submit"
+    },
+    "Product": {
+        "details": "Details about the product:",
+        "owner": "Owner company:",
+        "description": {
+            "more": "Show more",
+            "less": "Show less"
+        },
+        "noInfo": "No information about the company yet",
+        "reviews": "Reviews",
+        "Review": {
+            "yourReview": "Your Review",
+            "typeReviews": "Type your review here.",
+            "submit": "Submit",
+            "otherReviews": "Other Reviews",
+            "edit": "edit",
+            "done": "done"
+        }
+    },
+    "Company": {
+        "company": "company "
+    },
+    "Toasts": {
+        "errorTitle": "Error Happened",
+        "errorSignIn": "You have to Sign in First",
+        "unknownError": "Sorry Unknown error happened",
+        "addedTitle": "Added to favorites",
+        "removedTitle": "Removed from favorites",
+        "removedDescription": "You will not receive emails for new alternatives",
+        "addedDescription": "You will receive emails for new alternatives"
+    }
+    
+}
