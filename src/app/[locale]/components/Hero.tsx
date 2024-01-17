@@ -1,5 +1,11 @@
 import Link from "next/link";
+// import { Lora } from "next/font/google";
+
 import { useTranslations } from "next-intl";
+// const loraFont = Lora({
+//   weight: ["400", "700"],
+//   subsets: ["latin"],
+// });
 function Hero() {
   const tH = useTranslations("Home.hero");
   return (
@@ -9,7 +15,9 @@ function Hero() {
           {tH("info")}
         </p>
       </div>
-      <h1 className="text-gray-100 text-7xl lg:text-5xl mt-16 lg:mt-12  md:mt-8 font-bold">
+      <h1
+        className={`text-gray-100 text-7xl lg:text-5xl mt-16 lg:mt-12  md:mt-8 font-bold`}
+      >
         {tH("header")}
       </h1>
       <p className="w-[55ch] md:w-[40ch] sm:w-[30ch] md:text-base  text-center mt-16 lg:mt-12 md:mt-8 text-gray-300 text-lg ">

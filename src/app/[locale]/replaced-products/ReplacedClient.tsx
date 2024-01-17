@@ -1,44 +1,43 @@
 "use client";
-import Link from "next/link";
-import Tag from "../components/Tags/TagsClient";
-import { useState, useEffect } from "react";
 import { Button } from "../components/ui/button";
+import { useState, useEffect } from "react";
 import ProductCard from "../components/productCard";
+import { useTranslations } from "next-intl";
 import { fetchData } from "@/src/helpers/fetchData";
+import { Replace } from "lucide-react";
 function ReplacedClient() {
-  const [replacedProducts, setReplacedProducts] = useState();
+  const [replacedProducts, setReplacedClients] = useState();
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetchData(`replaced-products`, page).then((data) => {
-      setReplacedProducts(data);
+    fetchData(`trending-alternatives`, page).then((data) => {
+      console.log(data);
+      setReplacedClients(data);
     });
   }, [page]);
 
+  const t = useTranslations("Shared");
   return (
     <>
       <div>
-        <h1 className="text-2xl font-medium mb-2 mt-8">
-          You Should Look For Alternative To
-        </h1>
-        <div className="mt-10 w-full grid grid-cols-2 lg:grid-cols-1 gap-3 h-fit">
-          {replacedProducts &&
-            replacedProducts?.map((product: object) => {
-              return (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  alternative={false}
-                />
-              );
-            })}
+        <h1 className="text-2xl font-medium mb-2 mt-8">{t("trending")}</h1>
+        <div className="">
+          <div className="w-full grid grid-cols-2 lg:grid-cols-1 gap-3 h-fit ">
+            {replacedProducts?.map((product: any) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                alternative={true}
+              />
+            ))}
+          </div>
         </div>
         <Button
           variant={"link"}
-          className="text-center mx-auto p-2 mt-6 block text-blue-600 font-semibold underline text-lg hover:opacity-80"
+          className="text-center p-2 block mx-auto mt-6 text-blue-600 font-semibold underline text-lg hover:opacity-80"
           onClick={() => setPage(page + 1)}
         >
-          More
+          {t("more")}
         </Button>
       </div>
     </>

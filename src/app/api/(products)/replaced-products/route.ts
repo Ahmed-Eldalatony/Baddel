@@ -8,6 +8,8 @@ export async function GET(req: NextRequest) {
   await connectMongoDB();
   const products = await Product.find({
     alternatives: { $size: 0 },
-  }).limit(limit * page);
+  })
+    .limit(limit)
+    .skip((page - 1) * limit);
   return NextResponse.json({ products });
 }
