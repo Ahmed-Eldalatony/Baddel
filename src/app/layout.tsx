@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import {
+  // Open_Sans,
+  // Rubik,
+  // Merriweather,
+  // Noto_Serif,
+  Readex_Pro,
+  // Lora,
+} from "next/font/google";
+
 import Footer from "./[locale]/components/Footer";
 import "./globals.css";
 import Header from "./[locale]/components/Header/Header";
-const rubik = Rubik({ subsets: ["latin", "arabic"] });
 import { useLocale } from "next-intl";
+
+const openSans = Readex_Pro({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 export const metadata: Metadata = {
   title: "The Bds Project",
   description: "The boycott Pro",
@@ -21,7 +33,7 @@ export default function RootLayout({
   // }
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr "}>
-      <body className={`${rubik.className} min-h-screen `}>
+      <body className={`${openSans.className} min-h-screen `}>
         <Header />
         <div className=" sm:px-0">{children}</div>
         <div className="bg-red-800  ">
