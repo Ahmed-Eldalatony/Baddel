@@ -13,13 +13,13 @@ import Link from "next/link";
 // } from "../ui/select";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import logo from "/public/imgs/Baddel.svg";
+import logo from "/public/imgs/BDSLOGO.svg";
 import {
   Sheet,
   SheetContent,
-  // SheetDescription,
-  // SheetHeader,
-  // SheetTitle,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
 
@@ -96,12 +96,7 @@ function HeaderClient() {
       <div className="bg-white">
         <div className="flex px-3 md:px-1 sticky container z-50 top-0  items-center">
           <Link href={"/"}>
-            <Image
-              className="w-20 me-5 md:w-16 py-2"
-              width={"120"}
-              src={logo}
-              alt="Logo"
-            />
+            <Image className="md:w-20" width={"120"} src={logo} alt="Logo" />
           </Link>
           <div className="flex ml-2 mr-2 relative items-center ">
             <Input
