@@ -140,7 +140,7 @@ function HeaderClient() {
               {t("about")}
             </Link> */}
             {!user && (
-              <Link className="p-2 hover:text-gray-600" href={`${/locale}/signin`}>
+              <Link className="p-2 hover:text-gray-600" href={`/${locale}/signin`}>
                 {t("signin")}
               </Link>
             )}
