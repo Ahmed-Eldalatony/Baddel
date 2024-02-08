@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "../../../lib/utils";
 import axios from "axios";
 function SignIn() {
@@ -17,7 +17,7 @@ function SignIn() {
   const [error, setError] = useState("");
   const tR = useTranslations("Register");
   const router = useRouter();
-
+  const locale = useLocale();
 
   useEffect(() => {
     if (email && password) {
