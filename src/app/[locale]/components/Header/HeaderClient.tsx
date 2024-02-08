@@ -140,7 +140,7 @@ function HeaderClient() {
               {t("about")}
             </Link> */}
             {!user && (
-              <Link className="p-2 hover:text-gray-600" href={"/signin"}>
+              <Link className="p-2 hover:text-gray-600" href={`${/locale/signin}`}>
                 {t("signin")}
               </Link>
             )}
@@ -169,7 +169,7 @@ function HeaderClient() {
 
                   {user === null && (
                     <li className="p-2 hover:text-gray-600">
-                      <Link href={"/signin"}>{t("signin")} </Link>
+                      <Link href={`${/locale/signin}`}>{t("signin")} </Link>
                     </li>
                   )}
                   {user !== null && (
