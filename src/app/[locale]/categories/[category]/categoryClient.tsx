@@ -19,7 +19,7 @@ function CategoryClient() {
     <>
       <div>
         <h1 className="text-2xl font-medium mb-2 mt-8">
-          {Category} Products
+          {category} Products
         </h1>
         <div className="mt-10 w-full grid grid-cols-2 lg:grid-cols-1 gap-3 h-fit">
           {categoryData?.map((product: object) => {
