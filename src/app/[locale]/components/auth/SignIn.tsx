@@ -115,7 +115,7 @@ function SignIn() {
           )}
           <div className="text-sm">
             <span>{tR("account")} </span>
-            <Link className="underline text-blue-600" href={"/signup"}>
+            <Link className="underline text-blue-600" href={`${/locale}/signup`}>
               {tR("signup")}
             </Link>
           </div>
