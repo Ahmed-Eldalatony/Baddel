@@ -2,6 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Favorite from "./favorite";
 import { fetchDataById } from "@/src/helpers/fetchData";
 import Image from "next/image";
+import { pick } from "../../lib/pick";
 import TagsClient from "../components/Tags/TagsClient";
 import Link from "next/link";
 import Description from "./description";
@@ -20,7 +21,6 @@ import {
   openSource,
   unhealthy,
   other,
-  // egyptian,
 } from "@/src/app/lib/tagTypes";
 import { getTranslations } from "next-intl/server";
 const typesArr = {
@@ -35,17 +35,6 @@ const typesArr = {
   unhealthy,
   other,
   // egyptian,
-};
-
-// !Not sure wtf is this doing
-// TODO: remove it to utils
-const pick = function (obj, keys) {
-  return keys.reduce((acc, key) => {
-    if (obj.hasOwnProperty(key)) {
-      acc[key] = obj[key];
-    }
-    return acc;
-  }, {});
 };
 
 function ReviewProvider({ productId }) {

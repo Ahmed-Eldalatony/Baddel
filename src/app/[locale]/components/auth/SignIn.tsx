@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Card, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useLocale, useTranslations } from "next-intl";
-import { cn } from "../../../lib/utils";
 import axios from "axios";
+import { Button } from "../ui/button"; // Added missing import
+import { cn } from "@/src/app/lib/utils";
+
 function SignIn() {
   const [loading, setLoading] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -26,11 +26,12 @@ function SignIn() {
       setButtonDisabled(true);
     }
   }, [email, password]);
-  const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    setEmail(email);
 
-    if (!validateEmail(email)) {
+  const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (emailValue && !validateEmail(emailValue)) {
       setError(tR("emailError"));
       return;
     } else {
@@ -39,10 +40,10 @@ function SignIn() {
   };
 
   const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
-    setPassword(password);
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
 
-    if (password.length < 8) {
+    if (passwordValue && passwordValue.length < 8) {
       setError(tR("passwordError"));
       return;
     } else {
@@ -66,15 +67,18 @@ function SignIn() {
     try {
       setButtonDisabled(true);
       setLoading(true);
-      const data = await axios.post("/api/signin", {
+      const response = await axios.post("/api/signin", {
         email,
         password,
       });
+      // Handle successful login (e.g., store token, redirect)
       router.push("/");
-    } catch (error) {
-      setError(tR("invalidData"));
+    } catch (error: any) {
+      // Better error handling
+      setError(error.response?.data?.message || tR("invalidData"));
     } finally {
       setLoading(false);
+      setButtonDisabled(false); // Re-enable button after request
     }
   };
 
@@ -86,52 +90,62 @@ function SignIn() {
 
   return (
     <div className="flex h-[100vh] justify-center items-center">
-      <Card className=" w-96 lg:w-80 mb-32 p-5 lg:p-3 ">
+      <Card className="w-96 lg:w-80 mb-32 p-5 lg:p-3">
         <form onSubmit={submitHandler}>
           <CardTitle className="mb-6 lg:mb-4">{tR("signin")}</CardTitle>
 
-          <label>
+          <label className="block mb-4">
             {tR("email")}
             <Input
+              value={email}
               onChange={emailHandler}
-              className="px-3 py-6 lg:py-4 mb-4 lg:mb-2"
+              className="px-3 py-6 lg:py-4 mt-1"
               type="email"
               placeholder="example@gmail.com"
             />
           </label>
-          <label>
+
+          <label className="block mb-4">
             {tR("password")}
             <Input
+              value={password}
               onChange={passwordHandler}
-              className="px-3 py-6 lg:py-4 mb-4 lg:mb-2"
+              className="px-3 py-6 lg:py-4 mt-1"
               type="password"
               placeholder={tR("passwordPlaceholder")}
             />
           </label>
+
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
               {error}
             </div>
           )}
-          <div className="text-sm">
+
+          <div className="text-sm mb-4">
             <span>{tR("account")} </span>
-            <Link className="underline text-blue-600" href={`${/locale}/signup`}>
+            <Link
+              className="underline text-blue-600"
+              href={`/${locale}/signup`} // Fixed locale path
+            >
               {tR("signup")}
             </Link>
           </div>
+
           <Button
             className={cn(
-              "p-6 lg:p-4 mt-4 lg:mt-3 bg-green-600 hover:bg-green-500",
-              loading && " bg-green-500 pointer-events-none",
-              buttonDisabled && " bg-green-900 pointer-events-none"
+              "p-6 lg:p-4 w-full bg-green-600 hover:bg-green-500",
+              loading && "bg-green-500 pointer-events-none",
+              buttonDisabled && "bg-green-900 pointer-events-none",
             )}
             type="submit"
+            disabled={buttonDisabled || loading} // Added disabled prop
           >
             {loading
               ? tR("loading")
               : buttonDisabled
-              ? tR("noData")
-              : tR("submit")}
+                ? tR("noData")
+                : tR("submit")}
           </Button>
         </form>
       </Card>

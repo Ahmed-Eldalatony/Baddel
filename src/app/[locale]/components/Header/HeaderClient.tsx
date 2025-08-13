@@ -4,24 +4,10 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Link from "next/link";
 
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "../ui/select";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import logo from "/public/imgs/Baddel.svg";
-import {
-  Sheet,
-  SheetContent,
-  // SheetDescription,
-  // SheetHeader,
-  // SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 import { useLocale, useTranslations } from "next-intl";
 import { BsList } from "react-icons/bs";
@@ -73,7 +59,7 @@ function HeaderClient() {
             router.refresh();
           }, 200);
         }}
-        // locale="en"
+      // locale="en"
       >
         EN
       </a>
@@ -140,7 +126,10 @@ function HeaderClient() {
               {t("about")}
             </Link> */}
             {!user && (
-              <Link className="p-2 hover:text-gray-600" href={`/${locale}/signin`}>
+              <Link
+                className="p-2 hover:text-gray-600"
+                href={`/${locale}/signin`}
+              >
                 {t("signin")}
               </Link>
             )}
@@ -169,7 +158,7 @@ function HeaderClient() {
 
                   {user === null && (
                     <li className="p-2 hover:text-gray-600">
-                      <Link href={`${/locale/signin}`}>{t("signin")} </Link>
+                      <Link href={`${/locale/giinns}`}>{t("signin")} </Link>
                     </li>
                   )}
                   {user !== null && (
