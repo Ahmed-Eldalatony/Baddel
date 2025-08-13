@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// import logo from "/public/imgs/Baddel.svg";
+import logo from "@/public/imgs/Baddel.svg";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { useLocale, useTranslations } from "next-intl";
 import { BsList } from "react-icons/bs";
@@ -82,7 +82,7 @@ function HeaderClient() {
               className="w-20 me-5 md:w-16 py-2"
               width={120}
               height={40}
-              src={"../../../../../public/imgs/Baddel.svg"}
+              src={logo}
               alt="Logo"
             />
           </Link>
