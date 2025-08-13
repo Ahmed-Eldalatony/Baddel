@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { useLocale, useTranslations } from "next-intl";
 import axios from "axios";
-import { Button } from "../ui/button"; // Added missing import
+import { Button } from "../ui/button";
 import { cn } from "@/src/app/lib/utils";
 
 function SignIn() {
@@ -18,7 +18,57 @@ function SignIn() {
   const tR = useTranslations("Register");
   const router = useRouter();
   const locale = useLocale();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
+  // Check for autofill values on mount and when they change
+  useEffect(() => {
+    const checkAutofill = () => {
+      // Check actual input values after a short delay to allow autofill
+      setTimeout(() => {
+        const emailValue = emailRef.current?.value || "";
+        const passwordValue = passwordRef.current?.value || "";
+
+        if (emailValue !== email) setEmail(emailValue);
+        if (passwordValue !== password) setPassword(passwordValue);
+      }, 100);
+    };
+
+    // Initial check for autofill
+    checkAutofill();
+
+    // Add animationstart listener for Chrome autofill detection
+    const handleAnimationStart = (e: AnimationEvent) => {
+      if (e.animationName === "onAutoFillStart") {
+        checkAutofill();
+      }
+    };
+
+    const emailInput = emailRef.current;
+    const passwordInput = passwordRef.current;
+
+    emailInput?.addEventListener(
+      "animationstart",
+      handleAnimationStart as EventListener,
+    );
+    passwordInput?.addEventListener(
+      "animationstart",
+      handleAnimationStart as EventListener,
+    );
+
+    return () => {
+      emailInput?.removeEventListener(
+        "animationstart",
+        handleAnimationStart as EventListener,
+      );
+      passwordInput?.removeEventListener(
+        "animationstart",
+        handleAnimationStart as EventListener,
+      );
+    };
+  }, []);
+
+  // Update button state when email or password changes
   useEffect(() => {
     if (email && password) {
       setButtonDisabled(false);
@@ -54,12 +104,16 @@ function SignIn() {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    // Update state with current values in case of autofill
+    const currentEmail = emailRef.current?.value || email;
+    const currentPassword = passwordRef.current?.value || password;
+
+    if (!validateEmail(currentEmail)) {
       setError(tR("emailError"));
       return;
     }
 
-    if (password.length < 8) {
+    if (currentPassword.length < 8) {
       setError(tR("passwordError"));
       return;
     }
@@ -68,17 +122,15 @@ function SignIn() {
       setButtonDisabled(true);
       setLoading(true);
       const response = await axios.post("/api/signin", {
-        email,
-        password,
+        email: currentEmail,
+        password: currentPassword,
       });
-      // Handle successful login (e.g., store token, redirect)
       router.push("/");
     } catch (error: any) {
-      // Better error handling
       setError(error.response?.data?.message || tR("invalidData"));
     } finally {
       setLoading(false);
-      setButtonDisabled(false); // Re-enable button after request
+      setButtonDisabled(false);
     }
   };
 
@@ -97,22 +149,26 @@ function SignIn() {
           <label className="block mb-4">
             {tR("email")}
             <Input
+              ref={emailRef}
               value={email}
               onChange={emailHandler}
               className="px-3 py-6 lg:py-4 mt-1"
               type="email"
               placeholder="example@gmail.com"
+              autoComplete="email"
             />
           </label>
 
           <label className="block mb-4">
             {tR("password")}
             <Input
+              ref={passwordRef}
               value={password}
               onChange={passwordHandler}
               className="px-3 py-6 lg:py-4 mt-1"
               type="password"
               placeholder={tR("passwordPlaceholder")}
+              autoComplete="current-password"
             />
           </label>
 
@@ -126,7 +182,7 @@ function SignIn() {
             <span>{tR("account")} </span>
             <Link
               className="underline text-blue-600"
-              href={`/${locale}/signup`} // Fixed locale path
+              href={`/${locale}/signup`}
             >
               {tR("signup")}
             </Link>
@@ -139,7 +195,7 @@ function SignIn() {
               buttonDisabled && "bg-green-900 pointer-events-none",
             )}
             type="submit"
-            disabled={buttonDisabled || loading} // Added disabled prop
+            disabled={buttonDisabled || loading}
           >
             {loading
               ? tR("loading")
