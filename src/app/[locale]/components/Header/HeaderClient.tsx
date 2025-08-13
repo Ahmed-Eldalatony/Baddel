@@ -76,7 +76,7 @@ function HeaderClient() {
   return (
     <>
       <div className="bg-white">
-        <div className="flex px-3 md:px-1 sticky container z-50 top-0 items-center">
+        <div className="flex px-3  md:px-1 sticky container z-50 top-0 items-center">
           <Link href="/">
             <Image
               className="w-20 me-5 md:w-16 py-2"

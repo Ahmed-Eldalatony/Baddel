@@ -1,10 +1,10 @@
 import Link from "next/link";
 function Footer() {
   return (
-    <footer className=" container   grid grid-cols-3 p-4 mt-16 text-gray-100">
+    <footer className=" container  grid grid-cols-3 p-4 mt-16 text-gray-100">
       <div>
         <p className="font-semibold text-[1.05rem] mb-2">Developed By</p>
-        <strong className=" ont-normal">
+        <strong className=" font-normal">
           <a
             className=" font-medium text-gray-200 ps-2"
             href="https://github.com/Ahmed-ElDalatony"
@@ -13,14 +13,7 @@ function Footer() {
           </a>
         </strong>
       </div>
-      <div>
-        <p className="font-semibold  text-[1.05rem] mb-2">
-          Support the developer
-        </p>
-        <Link className="underline text-gray-200 ps-2" href={"/donate"}>
-          Donate
-        </Link>
-      </div>
+
       <div>
         <p className="font-semibold  text-[1.05rem] mb-2">Contact</p>
         <ul>
@@ -31,7 +24,6 @@ function Footer() {
                 "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=a01141399246@gmail.com"
               }
             >
-              {" "}
               Email
             </a>
           </li>

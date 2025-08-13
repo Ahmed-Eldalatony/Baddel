@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={`${openSans.className} min-h-screen `}>
         <Header />
         <div className=" sm:px-0">{children}</div>
-        <div className="bg-red-800  ">
+        <div className="bg-slate-900  ">
           <Footer />
         </div>
       </body>
